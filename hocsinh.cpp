@@ -19,8 +19,9 @@ class HocSinh{
     }
 
     // hàm định nghĩa toán tử << , nhận vào 1 luồng xuất , với const không cho thay đổi dữ liệu
-    void operator <<(ostream &out) const {
-        out << "Tên: " << ten << ", Tuổi: " << tuoi << endl;
+    friend ostream& operator<<(ostream &out , const HocSinh &hs) {
+        out << "Tên: " << hs.ten << ", tuổi: " << hs.tuoi;
+        return out;
     }
 
 };
@@ -39,9 +40,13 @@ int main() {
         danhSach[i].nhap();
     }
 
+    // in toàn bộ danh sách học sinh
+    for (int i = 0; i < soLuong; i++) {
+       cout << "Học sinh thứ " << i + 1 << ": " << danhSach[i] << endl; 
+    }
 
-    cout << "Học sinh cuối cùng là: \n";
-    danhSach[soLuong - 1] << cout ;
+    // cout << "Học sinh cuối cùng là: \n";
+    // danhSach[soLuong - 1] << cout ;
 
 
     // dùng xong thì xoá
